@@ -42,7 +42,7 @@ public interface CrudDao extends JpaRepository<Employee, Integer> {
 
 
 
-The Major difference between extending CRUDRepository and JPARepository is 
+The Major difference between these interfaces that we are extending CRUDRepository and JPARepository is 
 
 * CRUDRepository provides only crud methods
 * JPARepository extends PagingAndSortingRepository and that extends CRUDRepository
