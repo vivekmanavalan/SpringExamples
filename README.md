@@ -23,7 +23,7 @@ delete()
 
 To add some custom queries we need to use any one of the below methods.
 
-
+```
 @Repository
 public interface CrudDao extends JpaRepository<Employee, Integer> {
 
@@ -37,7 +37,7 @@ public interface CrudDao extends JpaRepository<Employee, Integer> {
 	 public List<Employee> result();
 }
 
-
+```
 
 
 
