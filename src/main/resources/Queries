@@ -1,0 +1,1 @@
+create table basics (id int not null primary key auto_increment, name varchar(10), age int, occupation varchar(15), hobby varchar(15));
