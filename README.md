@@ -40,4 +40,22 @@ check if it's authenticated then generate token
 
 create a JWtservice class add necessary methods to generate and validate token
 
+Then we need to the .addFilterbefore mathod in the security config 
+
+when a request comes in it'll first check if the token is valid or not 
+
+then we can serve the request.
+
+
+
+We can split this JWT Authentication into three steps:
+* Username and password validation with database which can be done like a normal spring security based application
+* Generating token using Jwts.builder and we can setClaims and setSubject(username) and setIssuedAt - date and setExpiration and signWith(signKey(), Signature.HS256).compact()
+* Third step is validating the token when the request comes with token 
+  * First we need get the request header which has "Authorization" property
+  * Then check if the token has "Bearer" string attached in the start and get the token by subString(7) which will remove the bearer keyword
+  * Then extract username from it and password using the reverse process by decoding the signature
+
+
+
 
