@@ -1,6 +1,7 @@
 # SpringMVC
 This branch contains code for JWT Authentication using spring boot 3.0
 
+# STEP 1:
 Normally in previous versions of spring boot we will extend the WebConfigurerAdapter class
 
 webconfigureradapter class is deprecated in spring 3.0
@@ -11,7 +12,6 @@ configure(AuthenticationManagerBuilder auth) where we could add username and pas
 
 using the auth.inMemoryAuthentication().withUser().withPassword() methods 
 
-
 second configure method takes HttpSecurity as parameter
 
 where we could authorize requests and access to urls
@@ -19,7 +19,7 @@ where we could authorize requests and access to urls
 configure(HttpSecurity http)
 http.csrf().disable().authorizeRequests().antMatchers("/getAll").permitAll()
 
-
+# Spring 3.0 steps
 Steps for spring security jwt
 
 create a security config class 
@@ -50,6 +50,8 @@ then we can serve the request.
 
 We can split this JWT Authentication into three steps:
 * Username and password validation with database which can be done like a normal spring security based application
+  * To do username and password validation we need to do few things in Security Config file
+  * Follow the step 1 in first line
 * Generating token using Jwts.builder and we can setClaims and setSubject(username) and setIssuedAt - date and setExpiration and signWith(signKey(), Signature.HS256).compact()
 * Third step is validating the token when the request comes with token 
   * First we need get the request header which has "Authorization" property
