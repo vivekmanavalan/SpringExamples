@@ -30,8 +30,10 @@ public class MessageConfig {
         return BindingBuilder.bind(queue).to(topicExchange).with("message_routingKey");
     }
 
+    //The below two beans are enough for message convertor and amqp template for entire project
+    //no need seperate bean for seperate configs with same functionality
     @Bean
-    public MessageConverter converter(){
+    MessageConverter converter(){
         return new Jackson2JsonMessageConverter();
     }
 

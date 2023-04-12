@@ -4,11 +4,11 @@ public class Order {
 
     private String orderId;
     private String name;
-    private String price;
-    public Order(String orderId, String name, String price) {
+    private String status;
+    public Order(String orderId, String name, String status) {
         this.orderId = orderId;
         this.name = name;
-        this.price = price;
+        this.status = status;
     }
 
     @Override
@@ -16,7 +16,7 @@ public class Order {
         return "Order{" +
                 "orderId='" + orderId + '\'' +
                 ", name='" + name + '\'' +
-                ", price='" + price + '\'' +
+                ", status='" + status + '\'' +
                 '}';
     }
 
@@ -36,12 +36,12 @@ public class Order {
         this.name = name;
     }
 
-    public String getPrice() {
-        return price;
+    public String getStatus() {
+        return status;
     }
 
-    public void setPrice(String price) {
-        this.price = price;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
 
