@@ -47,6 +47,15 @@ can send 4k-10k messages per second
 acknowledgement based
 smark publisher/dumb consumer
 
+# Types
+Direct Exchange: The direct exchange routes messages to queues based on a routing key that matches the exact routing key of the message. Messages are delivered to the queue(s) that have a binding with a matching routing key.
+
+Fanout Exchange: The fanout exchange routes messages to all the queues that are bound to it, regardless of the routing key. It is useful for broadcasting messages to multiple consumers.
+
+Topic Exchange: The topic exchange routes messages to one or more queues based on a pattern matching the routing key. The routing key is composed of one or more words separated by dots, and queues can bind with a pattern that matches the routing key.
+
+Headers Exchange: The headers exchange routes messages based on matching the headers of the message to the headers of the bindings. This exchange is useful when routing is based on multiple header values, instead of routing keys.
+
 # Real time use case
 RabbitMQ is often used for reliable message queuing and routing scenarios, such as:
 
