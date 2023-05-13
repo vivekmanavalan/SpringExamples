@@ -1,0 +1,176 @@
+Referred video
+Java techie jms queue 27min video
+
+
+# steps to run rabbitmq
+
+open rabbitmq
+
+go to this path in terminal
+
+C:\Program Files\RabbitMQ Server\rabbitmq_server-3.11.10\sbin
+
+run the below command 
+
+rabbitmq-plugins enable rabbitmq_management
+
+Then run the 
+
+rabbitmq-service.bat start
+
+
+To stop the service 
+
+rabbitmq-service.bat stop
+
+RabbitMQ dashboard
+
+http://localhost:15672/
+
+username and password: guest
+
+
+
+# Spring Security: 
+
+webconfigureradapter class is deprecated in spring 3.0
+
+It had two configure methods that should be overrided
+
+configure(AuthenticationManagerBuilder auth) where we could add username and password
+
+using the auth.inMemoryAuthentication().withUser().withPassword() methods 
+
+
+second configure method takes HttpSecurity as parameter
+
+where we could authorize requests and access to urls
+
+configure(HttpSecurity http)
+http.csrf().disable().authorizeRequests().antMatchers("/getAll").permitAll()
+
+
+Steps for spring security jwt
+
+create a security config class 
+
+create a method of UserDetailsService class from spring security core
+ in this method you can harcode the username and password.
+ 
+create a method of SecurityFilterChain class 
+	In this method you can give the authorization 
+	
+create a postmapping in controller called authenticate
+
+create a DTO class that has username and password 
+
+get the request in the API of that DTO type
+
+check if it's authenticated then generate token 
+
+create a JWtservice class add necessary methods to generate and validate token
+
+
+Then we need to the .addFilterbefore mathod in the security config
+
+we need to create a jwtfilter class that extends OncePerRequest class and annotate with @Component
+
+then we need to override the doFilterInternal method and in this method we need to validate the token 
+
+when a request comes in it'll first check if the token is valid or not 
+
+then we can serve the request.
+
+
+
+
+
+Apache kafka:
+it's  a distributed streaming platform through which we can send messages.
+
+producer is responsible for sending messages and consumers consumes them.
+
+Unlike rabbitMQ in kafka the messages in queue can stay for long even after the consumer reading the data.
+
+many consumers can read from the same topic.
+
+Kafka has a high-throughput and can send upto 1million messages per second. 
+It's highly fault-tolerant, has built-in partitioning, replication
+
+can send upto 1million messages per second
+smart consumer/ dumb publisher
+
+
+# RabbitMQ:
+
+RabbitMQ is an open-source general-purpose message-broker software – an intermediary for messaging, 
+that initially implemented the Advanced Message Queuing Protocol
+
+RabbitMQ can deal with some high-throughput use cases, such as online transactions or payment processing. 
+It is generally used to handle background and cron jobs or as a message broker between microservices.
+
+RabbitMQ employs a push model and prevents overwhelming users via the consumer configured prefetch limit. 
+This model is an ideal approach for low-latency messaging. It also functions well with the RabbitMQ queue-based architecture. 
+Think of RabbitMQ as a post office, which receives, stores, and delivers mail, 
+whereas RabbitMQ accepts, stores, and transmits binary data messages.
+
+Apache Kafka is designed for publish-subscribe and streaming scenarios, 
+while RabbitMQ is designed for message queuing and routing.
+
+can send 4k-10k messages per second
+acknowledgement based
+smart publisher/dumb consumer
+
+
+
+
+STEP 1: DOWNLOAD AND INSTALL KAFKA
+https://dlcdn.apache.org/kafka/3.2.0/...
+
+STEP 2: START THE KAFKA ENVIRONMENT
+this step is mandatory even if you want to run kafka  producer consumer in rest API in local
+# Start the ZooKeeper service
+.\bin\windows\zookeeper-server-start.bat .\config\zookeeper.properties
+
+# Start the Kafka broker service
+.\bin\windows\kafka-server-start.bat .\config\server.properties
+
+STEP 3: CREATE A TOPIC TO STORE YOUR EVENTS
+.\bin\windows\kafka-topics.bat --create --topic topic_demo --bootstrap-server localhost:9092
+
+STEP 4: WRITE SOME EVENTS INTO THE TOPIC
+.\bin\windows\kafka-console-producer.bat --topic topic_demo --bootstrap-server localhost:9092
+enter the messages
+
+STEP 5:  READ THE EVENTS
+.\bin\windows\kafka-console-consumer.bat --topic topic_demo --from-beginning --bootstrap-server localhost:9092
+hello world
+topic demo
+
+
+
+Here are some real-time examples of Apache Kafka and RabbitMQ:
+
+# Apache Kafka:
+Apache Kafka is commonly used for real-time data streaming scenarios, such as:
+
+Social media sentiment analysis: A company may use Apache Kafka to stream social media data in real-time 
+to analyze customer sentiment towards their products.
+
+IoT data processing: Devices connected to the Internet of Things (IoT) can generate a massive amount of data, 
+which can be ingested and processed in real-time using Apache Kafka.
+
+Financial data processing: Apache Kafka can be used for real-time financial data processing, 
+such as stock market data feeds or real-time fraud detection.
+
+RabbitMQ:
+RabbitMQ is often used for reliable message queuing and routing scenarios, such as:
+
+Order processing: A company may use RabbitMQ to handle customer orders and route them to the appropriate 
+department for processing.
+
+Email delivery: Email providers can use RabbitMQ to queue outgoing emails and ensure that they are delivered reliably.
+
+Chat applications: RabbitMQ can be used to handle real-time chat messages in applications, 
+ensuring that messages are delivered in the correct order and without loss.
+
